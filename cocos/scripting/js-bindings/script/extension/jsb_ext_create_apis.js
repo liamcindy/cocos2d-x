@@ -32,11 +32,17 @@ jsb.EventListenerAssetsManager.prototype._ctor = function(assetsManager, callbac
 
 
 
-cc.ControlButton.prototype._ctor = function(label, backgroundSprite, fontSize){
-    if(fontSize != undefined)
-        this.initWithTitleAndFontNameAndFontSize(label, backgroundSprite, fontSize);
+cc.ControlButton.prototype._ctor = function(label, backgroundSprite, autoSizeWithLabel, fontName, fontSize){
+    if(fontName != undefined && ontSize != undefined)
+        this.initWithTitleAndFontNameAndFontSize(label, fontName, fontSize);
     else if(backgroundSprite != undefined)
-        this.initWithLabelAndBackgroundSprite(label, backgroundSprite);
+    {
+        if(autoSizeWithLabel != undefined)
+            this.initWithLabelAndBackgroundSprite(label, backgroundSprite, autoSizeWithLabel);
+        else
+            this.initWithLabelAndBackgroundSprite(label, backgroundSprite, true);
+        
+    }
     else if(label != undefined)
         this.initWithBackgroundSprite(label);
     else
